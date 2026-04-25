@@ -44,8 +44,19 @@ private:
         reverseInorder(node->left, cnt, result);
     }
     
+    void deleteTree(TreeNode* node) {
+        if (node == nullptr) return;
+        deleteTree(node->left);
+        deleteTree(node->right);
+        delete node;
+    }
+    
 public:
     BST() : root(nullptr) {}
+    
+    ~BST() {
+        deleteTree(root);
+    }
     
     void insert(int val) {
         insert(root, val);
